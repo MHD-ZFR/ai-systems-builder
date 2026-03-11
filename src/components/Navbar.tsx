@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 const links = [
   { label: "About", href: "#about" },
@@ -35,7 +35,7 @@ const Navbar = () => {
             <a
               key={link.label}
               href={link.href}
-              className="text-xs font-medium text-text-secondary transition-colors hover:text-foreground"
+              className="text-xs font-medium text-muted-foreground transition-colors hover:text-foreground"
             >
               {link.label}
             </a>

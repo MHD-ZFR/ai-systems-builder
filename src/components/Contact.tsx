@@ -11,12 +11,12 @@ const Contact = () => (
   <section id="contact" className="section-padding px-6">
     <div className="container mx-auto max-w-3xl text-center">
       <AnimatedSection>
-        <p className="mb-4 text-sm font-medium uppercase tracking-[0.2em] text-text-secondary">Contact</p>
+        <p className="mb-4 text-sm font-medium uppercase tracking-[0.2em] text-muted-foreground">Contact</p>
         <h2 className="mb-6 text-3xl font-bold tracking-tight text-foreground md:text-5xl">
           Let's build something together
         </h2>
-        <p className="mb-12 text-lg text-text-secondary">
-          Interested in building intelligent systems together.
+        <p className="mb-12 text-lg text-muted-foreground">
+          Interested in building intelligent systems and AI-powered products.
         </p>
       </AnimatedSection>
 
@@ -31,7 +31,7 @@ const Contact = () => (
               className="hover-lift group flex items-center gap-2 rounded-full border border-border px-6 py-3 text-sm font-medium text-foreground transition-colors hover:border-foreground/30"
             >
               {link.label}
-              <ArrowUpRight className="h-4 w-4 text-text-secondary transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+              <ArrowUpRight className="h-4 w-4 text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
             </a>
           ))}
         </div>
