@@ -2,44 +2,43 @@ import { motion, useInView, useSpring, useTransform, useMotionValue } from "fram
 import { useRef, useEffect } from "react";
 import AnimatedSection from "./AnimatedSection";
 
-const AnimatedNumber = ({ value }: { value: string }) => {
-  const num = parseInt(value);
-  if (isNaN(num)) {
-    return <span className="stat-number">{value}</span>;
-  }
-
+const AnimatedNumber = ({ value, suffix = "+" }: { value: number; suffix?: string }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const motionValue = useMotionValue(0);
   const springValue = useSpring(motionValue, { duration: 2000, bounce: 0 });
-  const display = useTransform(springValue, (v) => `${Math.round(v)}+`);
+  const display = useTransform(springValue, (v) => `${Math.round(v)}${suffix}`);
 
   useEffect(() => {
-    if (isInView) motionValue.set(num);
-  }, [isInView, motionValue, num]);
+    if (isInView) motionValue.set(value);
+  }, [isInView, motionValue, value]);
 
   return <motion.span ref={ref} className="stat-number">{display}</motion.span>;
 };
 
 const metrics = [
   {
-    value: "5",
+    value: 5,
+    suffix: "+",
     title: "Data Pipelines",
     description: "Production streaming systems processing event data at scale.",
   },
   {
-    value: "3",
+    value: 3,
+    suffix: "+",
     title: "AI Automations",
     description: "Self-healing automation workflows replacing manual operations.",
   },
   {
-    value: "4",
+    value: 4,
+    suffix: "+",
     title: "Gen AI Apps",
     description: "LLM-powered applications serving real users in production.",
   },
   {
-    value: "95",
-    title: "% Query Accuracy",
+    value: 95,
+    suffix: "%",
+    title: "Query Accuracy",
     description: "RAG system accuracy on enterprise knowledge retrieval.",
   },
 ];
@@ -58,7 +57,7 @@ const Metrics = () => (
         {metrics.map((metric, i) => (
           <AnimatedSection key={metric.title} delay={i * 0.1}>
             <div className="flex h-full flex-col bg-background p-8">
-              <AnimatedNumber value={metric.value} />
+              <AnimatedNumber value={metric.value} suffix={metric.suffix} />
               <h3 className="mt-3 text-sm font-semibold text-foreground">
                 {metric.title}
               </h3>
