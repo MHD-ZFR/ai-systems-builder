@@ -36,8 +36,13 @@ const demos = [
 ];
 
 const LiveDemos = () => (
-  <section id="demos" className="section-padding px-6">
-    <div className="container mx-auto max-w-5xl">
+  <section id="demos" className="relative section-padding px-6">
+    {/* Ambient glow behind cards — gives glass something to blur against */}
+    <div className="pointer-events-none absolute inset-0 overflow-hidden">
+      <div className="absolute left-1/2 top-1/2 h-[600px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-muted/40 blur-[160px]" />
+    </div>
+
+    <div className="container relative z-10 mx-auto max-w-5xl">
       <AnimatedSection>
         <p className="mono-label mb-6">Live Systems</p>
         <h2 className="mb-6 text-3xl font-bold tracking-tight text-foreground md:text-4xl lg:text-5xl">
@@ -54,11 +59,14 @@ const LiveDemos = () => (
             <motion.div
               whileHover={{ y: -6 }}
               transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
-              className="glass-surface group flex h-full flex-col p-7"
+              className="glass-panel group flex h-full flex-col p-7"
             >
               {/* Status badge */}
               <div className="mb-5 flex items-center gap-2">
-                <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+                <span className="relative flex h-2 w-2">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-50" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
+                </span>
                 <span className="mono-label text-[10px]">{demo.status}</span>
               </div>
 
@@ -69,7 +77,7 @@ const LiveDemos = () => (
                 {demo.description}
               </p>
 
-              <div className="mb-5 rounded-lg border border-border bg-background px-3 py-2.5">
+              <div className="mb-5 rounded-lg border border-border/40 bg-background/60 px-3 py-2.5 backdrop-blur-sm">
                 <p className="font-mono text-[10px] text-muted-foreground">
                   {demo.architecture}
                 </p>
@@ -79,14 +87,14 @@ const LiveDemos = () => (
                 {demo.tech.map((t) => (
                   <span
                     key={t}
-                    className="rounded-full border border-border px-2.5 py-0.5 text-[10px] text-muted-foreground"
+                    className="glass-chip px-2.5 py-0.5 text-[10px] text-muted-foreground"
                   >
                     {t}
                   </span>
                 ))}
               </div>
 
-              <div className="mt-auto flex items-center gap-4 border-t border-border pt-5">
+              <div className="mt-auto flex items-center gap-4 border-t border-border/40 pt-5">
                 <a
                   href={demo.demoUrl}
                   className="inline-flex items-center gap-1.5 text-[11px] font-medium text-foreground transition-colors hover:text-muted-foreground"

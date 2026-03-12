@@ -24,9 +24,7 @@ const Navbar = () => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, delay: 0.1 }}
       className={`fixed left-0 right-0 top-0 z-50 px-6 py-4 transition-all duration-500 ${
-        scrolled
-          ? "bg-background/80 backdrop-blur-xl border-b border-border/40"
-          : ""
+        scrolled ? "glass-nav" : ""
       }`}
     >
       <div className="container mx-auto flex max-w-5xl items-center justify-between">

@@ -40,7 +40,7 @@ const Architecture = () => (
       <div className="grid gap-6 md:grid-cols-2">
         {diagrams.map((diagram, i) => (
           <AnimatedSection key={diagram.title} delay={i * 0.1}>
-            <div className="glass-surface flex h-full flex-col p-8">
+            <div className="glass-panel flex h-full flex-col p-8">
               <h3 className="mono-label mb-2">{diagram.title}</h3>
               <p className="mb-8 text-xs text-muted-foreground">{diagram.description}</p>
               <div className="flex flex-1 flex-col items-center gap-1.5">
@@ -53,11 +53,11 @@ const Architecture = () => (
                     transition={{ delay: j * 0.1 + i * 0.15, duration: 0.5 }}
                     className="flex w-full flex-col items-center"
                   >
-                    <div className="w-full rounded-lg border border-border bg-background px-4 py-3 text-center font-mono text-[11px] font-medium text-muted-foreground transition-colors hover:border-foreground/20 hover:text-foreground">
+                    <div className="w-full rounded-lg border border-border/50 bg-background/70 px-4 py-3 text-center font-mono text-[11px] font-medium text-muted-foreground backdrop-blur-sm transition-all duration-300 hover:border-foreground/20 hover:bg-background hover:text-foreground">
                       {node}
                     </div>
                     {j < diagram.nodes.length - 1 && (
-                      <div className="h-3 w-px bg-border" />
+                      <div className="h-3 w-px bg-border/60" />
                     )}
                   </motion.div>
                 ))}
