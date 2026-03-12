@@ -10,42 +10,39 @@ const roles = [
 
 const Hero = () => (
   <section className="relative flex min-h-screen flex-col items-center justify-center px-6">
-    {/* Ambient background element */}
+    {/* Ambient background orbs — creates depth for glass to sit on */}
     <div className="pointer-events-none absolute inset-0 overflow-hidden">
-      <div className="absolute -right-40 top-1/4 h-[500px] w-[500px] rounded-full bg-muted/50 blur-[120px]" />
-      <div className="absolute -left-40 bottom-1/4 h-[400px] w-[400px] rounded-full bg-muted/30 blur-[100px]" />
+      <div className="absolute -right-32 top-[20%] h-[500px] w-[500px] rounded-full bg-muted/60 blur-[140px]" />
+      <div className="absolute -left-32 bottom-[20%] h-[420px] w-[420px] rounded-full bg-muted/40 blur-[120px]" />
+      <div className="absolute left-1/2 top-[10%] h-[300px] w-[300px] -translate-x-1/2 rounded-full bg-muted/30 blur-[100px]" />
     </div>
 
     <div className="relative z-10 mx-auto max-w-4xl">
-      {/* Roles marquee */}
+      {/* Roles — glass chip bar */}
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 0.2 }}
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.2 }}
         className="mb-10 flex justify-center"
       >
-        <div className="flex items-center gap-3">
+        <div className="glass-chip flex items-center gap-3 px-5 py-2.5">
           {roles.map((role, i) => (
             <span key={role} className="flex items-center gap-3">
-              <span className="mono-label">{role}</span>
+              <span className="mono-label text-[10px]">{role}</span>
               {i < roles.length - 1 && (
-                <span className="h-1 w-1 rounded-full bg-muted-foreground/40" />
+                <span className="h-1 w-1 rounded-full bg-muted-foreground/30" />
               )}
             </span>
           ))}
         </div>
       </motion.div>
 
-      {/* Main headline — cinematic reveal */}
+      {/* Main headline */}
       <div className="overflow-hidden text-center">
         <motion.h1
           initial={{ y: 100, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          transition={{
-            duration: 1,
-            delay: 0.4,
-            ease: [0.16, 1, 0.3, 1],
-          }}
+          transition={{ duration: 1, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
           className="text-[clamp(2.5rem,7vw,6rem)] font-bold leading-[1.05] tracking-[-0.035em] text-foreground"
         >
           I build systems that
@@ -61,11 +58,11 @@ const Hero = () => (
         transition={{ duration: 0.8, delay: 0.8 }}
         className="mx-auto mt-8 max-w-xl text-center text-base leading-relaxed text-muted-foreground md:text-lg"
       >
-        Data & AI Systems Engineer — designing scalable pipelines, 
+        Data & AI Systems Engineer — designing scalable pipelines,
         intelligent automation, and generative AI applications.
       </motion.p>
 
-      {/* CTAs */}
+      {/* CTAs — glass secondary button */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -80,7 +77,7 @@ const Hero = () => (
         </a>
         <a
           href="#contact"
-          className="rounded-full border border-border px-8 py-3.5 text-sm font-medium text-foreground transition-all duration-500 hover:border-foreground/30 hover:shadow-[0_8px_30px_-6px_hsl(0_0%_0%/0.06)]"
+          className="glass-chip px-8 py-3.5 text-sm font-medium text-foreground"
         >
           Get In Touch
         </a>

@@ -8,8 +8,13 @@ const links = [
 ];
 
 const Contact = () => (
-  <section id="contact" className="section-padding px-6">
-    <div className="container mx-auto max-w-3xl text-center">
+  <section id="contact" className="relative section-padding px-6">
+    {/* Ambient glow for CTA depth */}
+    <div className="pointer-events-none absolute inset-0 overflow-hidden">
+      <div className="absolute left-1/2 top-1/2 h-[400px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-muted/30 blur-[120px]" />
+    </div>
+
+    <div className="container relative z-10 mx-auto max-w-3xl text-center">
       <AnimatedSection>
         <p className="mono-label mb-6">Contact</p>
         <h2 className="mb-6 text-3xl font-bold tracking-tight text-foreground md:text-5xl lg:text-6xl">
@@ -30,7 +35,7 @@ const Contact = () => (
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="hover-lift group flex items-center gap-2 rounded-full border border-border px-7 py-3.5 text-sm font-medium text-foreground transition-colors hover:border-foreground/25"
+              className="glass-chip group flex items-center gap-2 px-7 py-3.5 text-sm font-medium text-foreground hover:shadow-[0_12px_40px_-12px_hsl(0_0%_0%/0.06)]"
             >
               {link.label}
               <ArrowUpRight className="h-3.5 w-3.5 text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
