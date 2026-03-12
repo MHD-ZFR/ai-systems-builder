@@ -11,7 +11,7 @@ import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 
 const Index = () => (
-  <div className="min-h-screen bg-background">
+  <div className="grain min-h-screen bg-background">
     <Navbar />
     <Hero />
     <About />

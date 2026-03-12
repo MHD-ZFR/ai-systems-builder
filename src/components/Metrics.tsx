@@ -1,25 +1,46 @@
+import { motion, useInView, useSpring, useTransform, useMotionValue } from "framer-motion";
+import { useRef, useEffect } from "react";
 import AnimatedSection from "./AnimatedSection";
+
+const AnimatedNumber = ({ value }: { value: string }) => {
+  const num = parseInt(value);
+  if (isNaN(num)) {
+    return <span className="stat-number">{value}</span>;
+  }
+
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const motionValue = useMotionValue(0);
+  const springValue = useSpring(motionValue, { duration: 2000, bounce: 0 });
+  const display = useTransform(springValue, (v) => `${Math.round(v)}+`);
+
+  useEffect(() => {
+    if (isInView) motionValue.set(num);
+  }, [isInView, motionValue, num]);
+
+  return <motion.span ref={ref} className="stat-number">{display}</motion.span>;
+};
 
 const metrics = [
   {
-    label: "5+",
-    title: "Data Engineering Projects",
-    description: "Real-time pipelines processing event data at scale.",
+    value: "5",
+    title: "Data Pipelines",
+    description: "Production streaming systems processing event data at scale.",
   },
   {
-    label: "AI",
-    title: "Automation Workflows",
-    description: "Multiple production automation systems built with n8n.",
+    value: "3",
+    title: "AI Automations",
+    description: "Self-healing automation workflows replacing manual operations.",
   },
   {
-    label: "Gen AI",
-    title: "Applications",
-    description: "LLM + vector database applications in production.",
+    value: "4",
+    title: "Gen AI Apps",
+    description: "LLM-powered applications serving real users in production.",
   },
   {
-    label: "Cloud",
-    title: "Data Platforms",
-    description: "Data infrastructure deployed on Google Cloud.",
+    value: "95",
+    title: "% Query Accuracy",
+    description: "RAG system accuracy on enterprise knowledge retrieval.",
   },
 ];
 
@@ -27,19 +48,23 @@ const Metrics = () => (
   <section id="metrics" className="section-padding px-6">
     <div className="container mx-auto max-w-5xl">
       <AnimatedSection>
-        <p className="mb-4 text-sm font-medium uppercase tracking-[0.2em] text-muted-foreground">Impact</p>
-        <h2 className="mb-16 text-3xl font-bold tracking-tight text-foreground md:text-4xl">
-          Engineering at scale
+        <p className="mono-label mb-6">Impact</p>
+        <h2 className="mb-20 text-3xl font-bold tracking-tight text-foreground md:text-4xl lg:text-5xl">
+          Numbers that matter.
         </h2>
       </AnimatedSection>
 
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-px overflow-hidden rounded-2xl border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
         {metrics.map((metric, i) => (
           <AnimatedSection key={metric.title} delay={i * 0.1}>
-            <div className="glass-surface p-8 text-center">
-              <p className="mb-2 text-3xl font-bold tracking-tight text-foreground">{metric.label}</p>
-              <h3 className="mb-2 text-sm font-semibold text-foreground">{metric.title}</h3>
-              <p className="text-xs leading-relaxed text-muted-foreground">{metric.description}</p>
+            <div className="flex h-full flex-col bg-background p-8">
+              <AnimatedNumber value={metric.value} />
+              <h3 className="mt-3 text-sm font-semibold text-foreground">
+                {metric.title}
+              </h3>
+              <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
+                {metric.description}
+              </p>
             </div>
           </AnimatedSection>
         ))}
