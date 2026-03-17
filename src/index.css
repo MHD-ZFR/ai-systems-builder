@@ -120,7 +120,7 @@
 
   /* Glass chip — for tags, badges, small floating elements */
   .glass-chip {
-    @apply rounded-full transition-all duration-400;
+    @apply rounded-full transition-all duration-300;
     background: hsl(var(--glass-bg));
     border: 1px solid hsl(var(--glass-border));
     backdrop-filter: blur(12px) saturate(1.3);
