@@ -1,16 +1,16 @@
 import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 
-const roles = [
-  "Data Engineering",
-  "AI Automation",
-  "Generative AI",
-  "Cloud Systems",
+const specializations = [
+  "Real-Time Streaming Systems",
+  "Cloud Data Infrastructure",
+  "Generative AI Pipelines",
+  "AI Automation Platforms",
 ];
 
 const Hero = () => (
   <section className="relative flex min-h-screen flex-col items-center justify-center px-6">
-    {/* Ambient background orbs — creates depth for glass to sit on */}
+    {/* Ambient background orbs */}
     <div className="pointer-events-none absolute inset-0 overflow-hidden">
       <div className="absolute -right-32 top-[20%] h-[500px] w-[500px] rounded-full bg-muted/60 blur-[140px]" />
       <div className="absolute -left-32 bottom-[20%] h-[420px] w-[420px] rounded-full bg-muted/40 blur-[120px]" />
@@ -18,22 +18,17 @@ const Hero = () => (
     </div>
 
     <div className="relative z-10 mx-auto max-w-4xl">
-      {/* Roles — glass chip bar */}
+      {/* Role badge */}
       <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.2 }}
         className="mb-10 flex justify-center"
       >
-        <div className="glass-chip flex items-center gap-3 px-5 py-2.5">
-          {roles.map((role, i) => (
-            <span key={role} className="flex items-center gap-3">
-              <span className="mono-label text-[10px]">{role}</span>
-              {i < roles.length - 1 && (
-                <span className="h-1 w-1 rounded-full bg-muted-foreground/30" />
-              )}
-            </span>
-          ))}
+        <div className="glass-chip px-5 py-2.5">
+          <span className="mono-label text-[10px]">
+            Data & AI Systems Engineer
+          </span>
         </div>
       </motion.div>
 
@@ -43,37 +38,54 @@ const Hero = () => (
           initial={{ y: 100, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 1, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-          className="text-[clamp(2.5rem,7vw,6rem)] font-bold leading-[1.05] tracking-[-0.035em] text-foreground"
+          className="text-[clamp(2.2rem,6vw,5rem)] font-bold leading-[1.08] tracking-[-0.035em] text-foreground"
         >
-          I build systems that
+          I architect pipelines,
           <br />
-          <span className="text-gradient">turn data into products.</span>
+          <span className="text-gradient">not just write code.</span>
         </motion.h1>
       </div>
 
-      {/* Supporting line */}
+      {/* Supporting description */}
       <motion.p
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.8 }}
-        className="mx-auto mt-8 max-w-xl text-center text-base leading-relaxed text-muted-foreground md:text-lg"
+        className="mx-auto mt-8 max-w-2xl text-center text-base leading-relaxed text-muted-foreground md:text-lg"
       >
-        Data & AI Systems Engineer — designing scalable pipelines,
-        intelligent automation, and generative AI applications.
+        I design scalable data pipelines, real-time analytics systems, and
+        AI automation platforms that run in production — not demo environments.
       </motion.p>
 
-      {/* CTAs — glass secondary button */}
+      {/* Specializations */}
+      <motion.div
+        initial={{ opacity: 0, y: 15 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 1 }}
+        className="mx-auto mt-8 flex max-w-xl flex-wrap justify-center gap-2"
+      >
+        {specializations.map((s) => (
+          <span
+            key={s}
+            className="rounded-full border border-border px-4 py-1.5 font-mono text-[11px] text-muted-foreground"
+          >
+            {s}
+          </span>
+        ))}
+      </motion.div>
+
+      {/* CTAs */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 1 }}
+        transition={{ duration: 0.8, delay: 1.2 }}
         className="mt-12 flex flex-col items-center gap-4 sm:flex-row sm:justify-center"
       >
         <a
-          href="#projects"
+          href="#flagship"
           className="group relative overflow-hidden rounded-full bg-foreground px-8 py-3.5 text-sm font-medium text-background transition-all duration-500 hover:shadow-[0_8px_30px_-6px_hsl(0_0%_0%/0.25)]"
         >
-          <span className="relative z-10">View Projects</span>
+          <span className="relative z-10">View Systems</span>
         </a>
         <a
           href="#contact"
