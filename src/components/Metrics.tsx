@@ -18,28 +18,28 @@ const AnimatedNumber = ({ value, suffix = "+" }: { value: number; suffix?: strin
 
 const metrics = [
   {
-    value: 5,
-    suffix: "+",
-    title: "Data Pipelines",
-    description: "Kafka + Spark pipelines handling ~120k events/min in production.",
+    value: 3,
+    suffix: "",
+    title: "End-to-End Systems",
+    description: "Streaming pipeline, RAG assistant, and AI automation — each built with working code.",
   },
   {
-    value: 400,
-    suffix: "/day",
-    title: "Automated Tasks",
-    description: "n8n workflows processing tickets, alerts, and notifications daily.",
-  },
-  {
-    value: 91,
+    value: 84,
     suffix: "%",
     title: "RAG Accuracy",
-    description: "Retrieval accuracy measured on a 200-question internal eval set.",
+    description: "Measured on a 50-question eval set with GPT-4 judge scoring.",
+  },
+  {
+    value: 89,
+    suffix: "%",
+    title: "Classification Accuracy",
+    description: "Ticket intent classification tested on 200 labeled samples.",
   },
   {
     value: 2,
     suffix: "s",
     title: "Pipeline Latency",
-    description: "End-to-end p95 latency from Kafka ingestion to PostgreSQL write.",
+    description: "End-to-end p95 from Kafka ingestion to database write on test workloads.",
   },
 ];
 
@@ -47,9 +47,9 @@ const Metrics = () => (
   <section id="metrics" className="section-padding px-6">
     <div className="container mx-auto max-w-5xl">
       <AnimatedSection>
-        <p className="mono-label mb-6">Impact</p>
+        <p className="mono-label mb-6">Results</p>
         <h2 className="mb-20 text-3xl font-bold tracking-tight text-foreground md:text-4xl lg:text-5xl">
-          Numbers that matter.
+          Measured, not claimed.
         </h2>
       </AnimatedSection>
 

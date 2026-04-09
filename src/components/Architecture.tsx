@@ -5,22 +5,17 @@ const diagrams = [
   {
     title: "Streaming Data Pipeline",
     nodes: ["Data Sources", "Kafka", "Spark Streaming", "PostgreSQL", "Dashboard"],
-    description: "Event-driven architecture for real-time data processing with exactly-once delivery guarantees.",
+    description: "Event-driven architecture with at-least-once delivery. Tested on simulated workloads.",
   },
   {
     title: "AI Automation Architecture",
     nodes: ["Trigger Event", "n8n Workflow", "OpenAI API", "Business Logic", "Slack / Email"],
-    description: "Self-healing automation connecting AI reasoning to operational workflows.",
+    description: "Prompt-driven classification with confidence-based routing. GPT-3.5 for simple tasks, GPT-4 for complex ones.",
   },
   {
-    title: "Generative AI RAG System",
-    nodes: ["Documents", "Embeddings", "Vector DB", "LLM", "Response"],
-    description: "Retrieval-augmented generation pipeline for contextual, accurate AI responses.",
-  },
-  {
-    title: "Cloud Data Warehouse",
-    nodes: ["Raw Data", "Cloud Storage", "ETL / dbt", "BigQuery", "Analytics"],
-    description: "Layered data architecture optimized for cost-efficient analytics at scale.",
+    title: "RAG System",
+    nodes: ["Documents", "Chunk + Embed", "Vector DB", "Retrieve + Filter", "LLM + Prompt", "Response"],
+    description: "Retrieval-augmented generation with similarity threshold filtering and hallucination control.",
   },
 ];
 
@@ -30,14 +25,14 @@ const Architecture = () => (
       <AnimatedSection>
         <p className="mono-label mb-6">Architecture</p>
         <h2 className="mb-6 text-3xl font-bold tracking-tight text-foreground md:text-4xl lg:text-5xl">
-          How I think about systems.
+          How I design systems.
         </h2>
         <p className="mb-20 max-w-xl text-base text-muted-foreground">
-          Clean architecture is the foundation of reliable engineering. Each diagram represents a production pattern I've designed and deployed.
+          Patterns I've implemented and tested. Each diagram maps to a working project.
         </p>
       </AnimatedSection>
 
-      <div className="grid gap-6 md:grid-cols-2">
+      <div className="grid gap-6 md:grid-cols-3">
         {diagrams.map((diagram, i) => (
           <AnimatedSection key={diagram.title} delay={i * 0.1}>
             <div className="glass-panel flex h-full flex-col p-8">

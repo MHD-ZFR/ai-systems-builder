@@ -4,31 +4,24 @@ import AnimatedSection from "./AnimatedSection";
 
 const articles = [
   {
-    title: "Designing Real-Time Data Pipelines using Kafka and Spark",
+    title: "Building a Kafka + Spark Streaming Pipeline from Scratch",
     summary:
-      "A deep dive into building low-latency streaming pipelines that process millions of events per second.",
+      "Partition tuning, consumer lag, checkpointing — lessons from setting up a real-time pipeline on GCP.",
     readTime: "8 min",
     url: "#",
   },
   {
-    title: "Building AI Automation Workflows using n8n and APIs",
+    title: "RAG Pipeline Design: Chunking, Retrieval, and Hallucination Control",
     summary:
-      "How to create intelligent automation systems that connect AI models to business processes.",
-    readTime: "6 min",
-    url: "#",
-  },
-  {
-    title: "Understanding RAG Architecture for Generative AI",
-    summary:
-      "Exploring retrieval-augmented generation patterns for building knowledge-powered AI applications.",
+      "How I built a retrieval-augmented generation system with similarity thresholds and evaluation.",
     readTime: "10 min",
     url: "#",
   },
   {
-    title: "Scaling Cloud Data Warehouses using BigQuery",
+    title: "Prompt Engineering for Classification Tasks",
     summary:
-      "Best practices for designing and optimizing cloud-scale analytics infrastructure.",
-    readTime: "7 min",
+      "System prompts, few-shot examples, confidence scoring — practical patterns for LLM-based routing.",
+    readTime: "6 min",
     url: "#",
   },
 ];

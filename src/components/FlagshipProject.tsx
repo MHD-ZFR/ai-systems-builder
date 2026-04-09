@@ -1,13 +1,13 @@
 import { motion } from "framer-motion";
-import { Github, ExternalLink, Server, Database, BarChart3, AlertTriangle, TrendingUp } from "lucide-react";
+import { Github, ExternalLink, Server, Database, BarChart3, AlertTriangle, TrendingUp, Brain } from "lucide-react";
 import AnimatedSection from "./AnimatedSection";
 
 const pipelineStages = [
-  { label: "Twitter API", detail: "OAuth 2.0 streaming endpoint, ~3.2k tweets/min filtered by keywords", icon: ExternalLink },
-  { label: "Apache Kafka", detail: "3 brokers, 12 partitions, replication factor 2. Handles backpressure with consumer lag monitoring", icon: Server },
-  { label: "Spark Streaming", detail: "Structured Streaming with 10s micro-batches. Deduplication, schema validation, sentiment enrichment", icon: BarChart3 },
-  { label: "ClickHouse", detail: "MergeTree engine, partitioned by day. ~1.2B rows, p95 query latency ~180ms on aggregations", icon: Database },
-  { label: "Grafana Dashboard", detail: "Real-time panels refreshing every 5s. Trending topics, sentiment heatmaps, volume time-series", icon: TrendingUp },
+  { label: "Twitter API", detail: "OAuth 2.0 streaming endpoint. Filtered by keywords, sampled for dev use.", icon: ExternalLink },
+  { label: "Apache Kafka", detail: "3 brokers, 12 partitions, replication factor 2. Consumer lag monitored via Prometheus.", icon: Server },
+  { label: "Spark Streaming", detail: "Structured Streaming with 10s micro-batches. Deduplication, schema validation, basic sentiment tagging.", icon: BarChart3 },
+  { label: "ClickHouse", detail: "MergeTree engine, partitioned by day. Tested with ~50M rows. Designed to scale to billions.", icon: Database },
+  { label: "Grafana Dashboard", detail: "Panels refreshing every 10s. Trending topics, sentiment distribution, volume time-series.", icon: TrendingUp },
 ];
 
 const repoStructure = [
@@ -15,7 +15,7 @@ const repoStructure = [
   { folder: "/spark-streaming", desc: "Stream processing, transformations" },
   { folder: "/data-storage", desc: "ClickHouse schemas, migrations" },
   { folder: "/dashboard", desc: "Grafana provisioning, panel configs" },
-  { folder: "/infra", desc: "Docker Compose, Terraform configs" },
+  { folder: "/infra", desc: "Docker Compose, environment configs" },
   { folder: "/monitoring", desc: "Prometheus rules, alerting" },
 ];
 
@@ -41,24 +41,24 @@ const FlagshipProject = () => (
       <AnimatedSection>
         <p className="mono-label mb-6">Flagship System</p>
         <h2 className="mb-4 text-3xl font-bold tracking-tight text-foreground md:text-4xl lg:text-5xl">
-          Large-Scale Data System
+          Stream Processing Pipeline
         </h2>
         <p className="mb-6 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
-          Production-grade Twitter stream processing pipeline ingesting ~3.2k tweets/min,
-          processing through Spark Structured Streaming, and serving real-time analytics
-          from ClickHouse with sub-200ms query latency.
+          End-to-end streaming pipeline built as a learning project. Ingests Twitter data through Kafka,
+          processes with Spark Structured Streaming, stores in ClickHouse, and renders real-time dashboards.
+          Tested with simulated workloads and sample datasets.
         </p>
         <div className="mb-16 flex flex-wrap gap-3">
           <a href="#" className="glass-chip inline-flex items-center gap-1.5 px-4 py-2 text-[11px] font-medium text-foreground">
             <Github className="h-3 w-3" /> Repository
           </a>
           <a href="#" className="glass-chip inline-flex items-center gap-1.5 px-4 py-2 text-[11px] font-medium text-foreground">
-            <ExternalLink className="h-3 w-3" /> Live Dashboard
+            <ExternalLink className="h-3 w-3" /> Screenshots
           </a>
         </div>
       </AnimatedSection>
 
-      {/* ── Pipeline Architecture ── */}
+      {/* Pipeline Architecture */}
       <AnimatedSection delay={0.1}>
         <div className="mb-20">
           <p className="mono-label mb-8">Pipeline Architecture</p>
@@ -74,7 +74,6 @@ const FlagshipProject = () => (
                   transition={{ delay: i * 0.08, duration: 0.5 }}
                   className="relative"
                 >
-                  {/* Connector line */}
                   {i < pipelineStages.length - 1 && (
                     <div className="absolute left-[19px] top-[56px] h-[calc(100%-32px)] w-px bg-border" />
                   )}
@@ -94,24 +93,24 @@ const FlagshipProject = () => (
         </div>
       </AnimatedSection>
 
-      {/* ── System Details Grid ── */}
+      {/* System Details Grid */}
       <div className="mb-20 grid gap-6 md:grid-cols-2">
-        {/* Deployment & Infrastructure */}
+        {/* Deployment */}
         <AnimatedSection delay={0.15}>
           <div className="rounded-2xl border border-border bg-card p-7">
             <p className="mono-label mb-5">Deployment & Infrastructure</p>
             <div className="space-y-4 text-sm">
               <div>
                 <p className="mb-1 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground/60">Cloud</p>
-                <p className="text-muted-foreground">GCP Compute Engine — 3× n2-standard-4 instances</p>
+                <p className="text-muted-foreground">GCP Compute Engine — 2× e2-standard-2 instances</p>
               </div>
               <div>
                 <p className="mb-1 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground/60">Services</p>
-                <p className="text-muted-foreground">Kafka (self-managed), Spark on YARN, ClickHouse single-node, Grafana Cloud</p>
+                <p className="text-muted-foreground">Kafka (self-managed), Spark on YARN, ClickHouse single-node, Grafana</p>
               </div>
               <div>
                 <p className="mb-1 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground/60">Containerization</p>
-                <p className="text-muted-foreground">Docker Compose for local dev, Terraform for GCP provisioning</p>
+                <p className="text-muted-foreground">Docker Compose for local dev. Designed for Terraform provisioning.</p>
               </div>
               <div>
                 <p className="mb-1 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground/60">Monitoring</p>
@@ -119,7 +118,7 @@ const FlagshipProject = () => (
               </div>
               <div>
                 <p className="mb-1 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground/60">Cost</p>
-                <p className="text-muted-foreground">~$420/month total infrastructure</p>
+                <p className="text-muted-foreground">~$180/month dev infrastructure</p>
               </div>
             </div>
           </div>
@@ -136,11 +135,11 @@ const FlagshipProject = () => (
               <div className="space-y-3 text-sm">
                 <div className="flex gap-3">
                   <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-muted-foreground/40" />
-                  <p className="text-muted-foreground">Dead letter queue for malformed events — reprocessed via scheduled Airflow job</p>
+                  <p className="text-muted-foreground">Dead letter queue for malformed events — logged for manual inspection</p>
                 </div>
                 <div className="flex gap-3">
                   <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-muted-foreground/40" />
-                  <p className="text-muted-foreground">Kafka consumer offset commits only after successful Spark write — at-least-once delivery</p>
+                  <p className="text-muted-foreground">Kafka consumer offsets committed after successful Spark write — at-least-once delivery</p>
                 </div>
                 <div className="flex gap-3">
                   <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-muted-foreground/40" />
@@ -161,11 +160,11 @@ const FlagshipProject = () => (
                 </div>
                 <div className="flex gap-3">
                   <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-muted-foreground/40" />
-                  <p className="text-muted-foreground">ClickHouse sharding planned at {">"} 5B rows</p>
+                  <p className="text-muted-foreground">ClickHouse sharding designed for {">"} 500M rows</p>
                 </div>
                 <div className="flex gap-3">
                   <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-muted-foreground/40" />
-                  <p className="text-muted-foreground">Currently sized for ~5k events/min with 3× headroom</p>
+                  <p className="text-muted-foreground">Currently tested at moderate throughput with room for growth</p>
                 </div>
               </div>
             </div>
@@ -173,16 +172,16 @@ const FlagshipProject = () => (
         </AnimatedSection>
       </div>
 
-      {/* ── Performance Metrics ── */}
+      {/* Performance Metrics */}
       <AnimatedSection delay={0.1}>
         <div className="mb-20">
-          <p className="mono-label mb-8">Performance Metrics</p>
+          <p className="mono-label mb-8">Performance Metrics (Test Environment)</p>
           <div className="grid gap-px overflow-hidden rounded-2xl border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
             {[
-              { value: "~3.2k", label: "Tweets/min ingested" },
+              { value: "~8k", label: "Events/min (simulated)" },
               { value: "~2.1s", label: "End-to-end latency" },
               { value: "~180ms", label: "ClickHouse p95 query" },
-              { value: "1.2B+", label: "Rows stored" },
+              { value: "50M+", label: "Rows tested" },
             ].map((m) => (
               <div key={m.label} className="bg-background p-6">
                 <p className="text-2xl font-bold tracking-tight text-foreground">{m.value}</p>
@@ -193,7 +192,33 @@ const FlagshipProject = () => (
         </div>
       </AnimatedSection>
 
-      {/* ── GitHub Credibility ── */}
+      {/* Sentiment Analysis — AI layer */}
+      <AnimatedSection delay={0.12}>
+        <div className="mb-20 rounded-2xl border border-border bg-card p-7">
+          <p className="mono-label mb-5">
+            <Brain className="mr-1.5 inline h-3 w-3" />
+            AI Layer: Sentiment Analysis
+          </p>
+          <div className="grid gap-5 md:grid-cols-2">
+            <div>
+              <p className="mb-1 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground/60">Approach</p>
+              <p className="text-[12px] leading-relaxed text-muted-foreground">
+                Each tweet is classified as positive / negative / neutral during the Spark processing stage.
+                Uses a lightweight TextBlob model for throughput. Considered fine-tuned BERT but latency budget was too tight for streaming.
+              </p>
+            </div>
+            <div>
+              <p className="mb-1 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground/60">Trade-off</p>
+              <p className="text-[12px] leading-relaxed text-muted-foreground">
+                TextBlob accuracy is lower than transformer models (~68% vs ~85%) but processes in {"<"}5ms per tweet.
+                For dashboard-level aggregation, the accuracy trade-off is acceptable. Would upgrade to a distilled BERT model if per-tweet accuracy mattered.
+              </p>
+            </div>
+          </div>
+        </div>
+      </AnimatedSection>
+
+      {/* GitHub Credibility */}
       <AnimatedSection delay={0.15}>
         <div className="mb-8">
           <p className="mono-label mb-8">
@@ -201,7 +226,6 @@ const FlagshipProject = () => (
             Repository Structure
           </p>
           <div className="grid gap-6 md:grid-cols-2">
-            {/* Folders */}
             <div className="rounded-2xl border border-border bg-card p-6">
               <p className="mb-4 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground/60">Directories</p>
               <div className="space-y-2.5">
@@ -223,7 +247,6 @@ const FlagshipProject = () => (
               </div>
             </div>
 
-            {/* Commits */}
             <div className="rounded-2xl border border-border bg-card p-6">
               <p className="mb-4 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground/60">Recent Commits</p>
               <div className="space-y-3">
