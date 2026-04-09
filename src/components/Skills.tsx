@@ -2,12 +2,12 @@ import { motion } from "framer-motion";
 import AnimatedSection from "./AnimatedSection";
 
 const categories = [
-  { title: "Languages", items: ["Python", "SQL"] },
-  { title: "Data Engineering", items: ["Apache Spark", "Kafka", "Airflow"] },
-  { title: "AI / Generative AI", items: ["LangChain", "OpenAI APIs", "Vector Databases"] },
-  { title: "Automation", items: ["n8n", "Workflow Automation"] },
-  { title: "Cloud", items: ["Google Cloud Platform", "BigQuery", "Cloud Storage"] },
-  { title: "DevOps", items: ["Docker", "Git", "Linux"] },
+  { title: "Languages", items: ["Python", "SQL", "JavaScript"] },
+  { title: "Data Engineering", items: ["Apache Kafka", "Spark", "Airflow", "dbt"] },
+  { title: "AI / ML", items: ["LangChain", "OpenAI API", "Pinecone", "RAG Pipelines"] },
+  { title: "Automation", items: ["n8n", "Webhooks", "REST APIs"] },
+  { title: "Cloud & Infra", items: ["GCP", "Docker", "Prometheus", "Grafana"] },
+  { title: "Databases", items: ["PostgreSQL", "ClickHouse", "BigQuery", "Redis"] },
 ];
 
 const Skills = () => (
@@ -26,7 +26,7 @@ const Skills = () => (
             <div>
               <h3 className="mono-label mb-5">{cat.title}</h3>
               <div className="space-y-2">
-                {cat.items.map((item, j) => (
+                {cat.items.map((item) => (
                   <motion.div
                     key={item}
                     whileHover={{ x: 4 }}

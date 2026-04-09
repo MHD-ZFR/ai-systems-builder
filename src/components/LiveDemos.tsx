@@ -1,37 +1,40 @@
 import { motion } from "framer-motion";
-import { ExternalLink, Github } from "lucide-react";
+import { ExternalLink, Github, Brain } from "lucide-react";
 import AnimatedSection from "./AnimatedSection";
 
 const demos = [
   {
-    title: "AI Knowledge Assistant",
+    title: "RAG Knowledge Assistant",
     problem:
-      "Internal docs scattered across Notion, Confluence, and Google Drive — engineers wasted time searching.",
-    architecture: "Docs → Embeddings → Pinecone → LLM → FastAPI",
+      "Internal docs scattered across multiple tools — engineers wasted time searching for answers.",
+    architecture: "Docs → Chunking → Embeddings → Pinecone → LLM → FastAPI",
     tech: ["LangChain", "Pinecone", "OpenAI", "FastAPI"],
     metrics: ["~1,200 chunks indexed", "p95 retrieval ~320ms", "~$0.04/query"],
-    status: "Live",
+    aiDetail: "Recursive chunking (200 tokens, 50 overlap). Similarity threshold at 0.72 — below that, model declines to answer. Evaluated on 50-question set with GPT-4 judge.",
+    status: "Prototype",
     demoUrl: "#",
     githubUrl: "#",
   },
   {
-    title: "AI Automation Workflow",
+    title: "AI Ticket Classifier",
     problem:
-      "Repetitive ticket routing and status notifications handled manually by the ops team.",
-    architecture: "Webhook → n8n → OpenAI → Slack / Email",
+      "Support tickets manually triaged. Needed automated intent classification and routing.",
+    architecture: "Webhook → n8n → OpenAI classify → Slack / Email",
     tech: ["n8n", "OpenAI", "REST APIs", "Webhooks"],
-    metrics: ["~400 tasks/day", "~1.8s avg response", "1 × 2-vCPU instance"],
-    status: "Live",
+    metrics: ["~120 tasks/day tested", "~1.4s avg classification", "~89% accuracy on 200 labels"],
+    aiDetail: "System prompt with few-shot examples per category. Output constrained to predefined enum. Confidence < 0.6 routes to manual review. GPT-3.5-turbo for simple routing, GPT-4 for multi-intent.",
+    status: "Prototype",
     demoUrl: "#",
     githubUrl: "#",
   },
   {
-    title: "Data Analytics Dashboard",
+    title: "Natural Language SQL Interface",
     problem:
-      "Non-technical users couldn't run ad-hoc queries without filing tickets to the data team.",
-    architecture: "NL → GPT-4 SQL → PostgreSQL → Streamlit",
+      "Non-technical users couldn't query data without filing requests to the data team.",
+    architecture: "NL → GPT-4 SQL → PostgreSQL → Streamlit chart",
     tech: ["GPT-4", "PostgreSQL", "Streamlit", "Python"],
-    metrics: ["~60 table schemas", "~87% SQL accuracy", "~3.5s query-to-chart"],
+    metrics: ["~20 table schemas", "~82% SQL accuracy on test set", "~3.5s query-to-chart"],
+    aiDetail: "Schema metadata injected into system prompt with column descriptions. SQL output validated against allowlist — DROP/DELETE/UPDATE rejected. Ambiguous queries trigger clarification step.",
     status: "Beta",
     demoUrl: "#",
     githubUrl: "#",
@@ -46,12 +49,12 @@ const LiveDemos = () => (
 
     <div className="container relative z-10 mx-auto max-w-5xl">
       <AnimatedSection>
-        <p className="mono-label mb-6">Live Systems</p>
+        <p className="mono-label mb-6">AI Systems</p>
         <h2 className="mb-6 text-3xl font-bold tracking-tight text-foreground md:text-4xl lg:text-5xl">
-          Working in production.
+          Built and tested.
         </h2>
         <p className="mb-20 max-w-xl text-base text-muted-foreground">
-          Functional systems you can explore — described with real constraints and measured performance.
+          Working prototypes with real constraints. Each system tested on sample data with measured results.
         </p>
       </AnimatedSection>
 
@@ -87,12 +90,23 @@ const LiveDemos = () => (
               </div>
 
               {/* Metrics */}
-              <div className="mb-5 space-y-1">
+              <div className="mb-4 space-y-1">
                 {demo.metrics.map((m) => (
                   <p key={m} className="font-mono text-[10px] text-foreground/70">
                     {m}
                   </p>
                 ))}
+              </div>
+
+              {/* AI Detail */}
+              <div className="mb-5 rounded-lg border border-border/30 bg-muted/30 px-3 py-2.5">
+                <p className="mb-1 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground/60">
+                  <Brain className="mr-1 inline h-2.5 w-2.5" />
+                  AI Design
+                </p>
+                <p className="text-[10px] leading-relaxed text-muted-foreground">
+                  {demo.aiDetail}
+                </p>
               </div>
 
               {/* Tech */}

@@ -9,7 +9,6 @@ const links = [
 
 const Contact = () => (
   <section id="contact" className="relative section-padding px-6">
-    {/* Ambient glow for CTA depth */}
     <div className="pointer-events-none absolute inset-0 overflow-hidden">
       <div className="absolute left-1/2 top-1/2 h-[400px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-muted/30 blur-[120px]" />
     </div>
@@ -18,12 +17,12 @@ const Contact = () => (
       <AnimatedSection>
         <p className="mono-label mb-6">Contact</p>
         <h2 className="mb-6 text-3xl font-bold tracking-tight text-foreground md:text-5xl lg:text-6xl">
-          Let's build
+          Open to
           <br />
-          <span className="text-gradient">something real.</span>
+          <span className="text-gradient">opportunities.</span>
         </h2>
         <p className="mb-14 text-base text-muted-foreground md:text-lg">
-          Interested in building intelligent systems and AI-powered products.
+          Looking for roles in data engineering, AI systems, or backend infrastructure.
         </p>
       </AnimatedSection>
 

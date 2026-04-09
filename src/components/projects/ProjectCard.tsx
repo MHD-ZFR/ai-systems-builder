@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowUpRight, Github, Cloud, Shield, TrendingUp, AlertTriangle, Scale, Wrench, CheckCircle } from "lucide-react";
+import { ArrowUpRight, Github, Cloud, Shield, TrendingUp, AlertTriangle, Scale, Wrench, CheckCircle, Brain, Target, Zap } from "lucide-react";
 import type { Project } from "./projectData";
 
 const Label = ({ icon: Icon, children }: { icon?: React.ElementType; children: React.ReactNode }) => (
@@ -127,6 +127,59 @@ const ProjectCard = ({ project }: { project: Project }) => (
         </div>
       </div>
     </div>
+
+    {/* AI System Design — only for AI projects */}
+    {project.aiDesign && (
+      <div className="mt-6 rounded-2xl border border-border bg-card p-6">
+        <p className="mono-label mb-5">
+          <Brain className="mr-1.5 inline h-3 w-3" />
+          AI System Design
+        </p>
+        <div className="grid gap-5 md:grid-cols-2">
+          <div>
+            <p className="mb-1 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground/60">
+              <Target className="mr-1 inline h-3 w-3" />
+              Prompt Strategy
+            </p>
+            <p className="text-[12px] leading-relaxed text-muted-foreground">{project.aiDesign.promptStrategy}</p>
+          </div>
+
+          {project.aiDesign.ragDetails && (
+            <div>
+              <p className="mb-1 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground/60">RAG Pipeline</p>
+              <p className="text-[12px] leading-relaxed text-muted-foreground">{project.aiDesign.ragDetails}</p>
+            </div>
+          )}
+
+          {project.aiDesign.relevanceFiltering && (
+            <div>
+              <p className="mb-1 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground/60">Relevance Filtering</p>
+              <p className="text-[12px] leading-relaxed text-muted-foreground">{project.aiDesign.relevanceFiltering}</p>
+            </div>
+          )}
+
+          {project.aiDesign.hallucinationControl && (
+            <div>
+              <p className="mb-1 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground/60">Hallucination Control</p>
+              <p className="text-[12px] leading-relaxed text-muted-foreground">{project.aiDesign.hallucinationControl}</p>
+            </div>
+          )}
+
+          <div>
+            <p className="mb-1 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground/60">
+              <Zap className="mr-1 inline h-3 w-3" />
+              Evaluation
+            </p>
+            <p className="text-[12px] leading-relaxed text-muted-foreground">{project.aiDesign.evaluation}</p>
+          </div>
+
+          <div>
+            <p className="mb-1 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground/60">Optimization</p>
+            <p className="text-[12px] leading-relaxed text-muted-foreground">{project.aiDesign.optimization}</p>
+          </div>
+        </div>
+      </div>
+    )}
 
     {/* Tech tags */}
     <div className="mt-5 flex flex-wrap gap-2">
